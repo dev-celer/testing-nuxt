@@ -1,0 +1,8 @@
+version: "0.1"
+services:
+  frontend:
+    image:
+      baseline: "ghcr.io/dev-celer/testing-nuxt-frontend:latest"
+  backend:
+    image:
+      baseline: "ghcr.io/dev-celer/testing-nuxt-backend:latest"
