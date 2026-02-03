@@ -3,10 +3,14 @@ services:
   frontend:
     image:
       baseline: "ghcr.io/dev-celer/testing-nuxt-frontend:latest"
+    routes:
+      - path: /
     ports:
       - 80
   backend:
     image:
       baseline: "ghcr.io/dev-celer/testing-nuxt-backend:latest"
+    routes:
+      - path: /api
     ports:
       - 3000
