@@ -13,6 +13,7 @@ async function increment() {
     <p class="count">{{ data?.count }}</p>
     <button @click="increment">Increment</button>
     <p class="hint">The counter state lives on the server. Refresh the page or open in another tab to verify.</p>
+    <p class="hint">This is a test comment</p>
   </div>
 </template>
 
