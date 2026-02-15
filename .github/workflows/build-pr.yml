@@ -9,6 +9,10 @@ on:
       - server/**
     branches: [main]
 
+permissions:
+  contents: write
+  packages: write
+
 env:
   REGISTRY: ghcr.io
   IMAGE_PREFIX: ${{ github.repository }}
