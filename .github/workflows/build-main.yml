@@ -8,13 +8,6 @@ on:
       - public/**
       - server/**
     branches: [main]
-  pull_request:
-    paths:
-      - app/**
-      - docker/**
-      - public/**
-      - server/**
-    branches: [main]
 
 env:
   REGISTRY: ghcr.io
