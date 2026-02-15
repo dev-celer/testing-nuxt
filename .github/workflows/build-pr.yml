@@ -1,12 +1,13 @@
 name: Build and Push Docker Images for the pull request
 
-pull_request:
-  paths:
-    - app/**
-    - docker/**
-    - public/**
-    - server/**
-  branches: [main]
+on:
+  pull_request:
+    paths:
+      - app/**
+      - docker/**
+      - public/**
+      - server/**
+    branches: [main]
 
 env:
   REGISTRY: ghcr.io
@@ -54,6 +55,15 @@ jobs:
           file: docker/backend/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-backend:pr-${{ env.PR_NUMBER }}
+
+      - name: Update manifest
+        run: |
+          sed '/backend:/,/ports:/ s/\(preview:.*:\)[^"]*"/\1pr${{ env.PR_NUMBER }}"/' apercu.yaml
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add apercu.yaml
+          git commit -m "Update backend preview image for PR #${{ env.PR_NUMBER }}"
+          git push
   build-frontend:
     runs-on: ubuntu-latest
     permissions:
@@ -94,3 +104,13 @@ jobs:
           file: docker/frontend/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-frontend:pr-${{ env.PR_NUMBER }}
+
+      
+      - name: Update manifest
+        run: |
+          sed '/frontend:/,/ports:/ s/\(preview:.*:\)[^"]*"/\1pr${{ env.PR_NUMBER }}"/' apercu.yaml
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add apercu.yaml
+          git commit -m "Update frontend preview image for PR #${{ env.PR_NUMBER }}"
+          git push
