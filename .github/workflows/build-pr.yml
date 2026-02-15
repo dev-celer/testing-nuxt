@@ -13,7 +13,6 @@ env:
   REGISTRY: ghcr.io
   IMAGE_PREFIX: ${{ github.repository }}
   PR_NUMBER: ${{ github.event.number }}
-  BRANCH_NAME: ${{ github.head_ref }}
 
 jobs:
   build-backend:
@@ -25,6 +24,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -59,7 +61,6 @@ jobs:
 
       - name: Update manifest
         run: |
-          git checkout ${{ env.BRANCH_NAME }}
           sed -i '/backend:/,/ports:/ s/\(preview:.*:\)[^"]*"/\1pr${{ env.PR_NUMBER }}"/' apercu.yaml
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -75,6 +76,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -110,7 +114,6 @@ jobs:
       
       - name: Update manifest
         run: |
-          git checkout ${{ env.BRANCH_NAME }}
           sed -i '/frontend:/,/ports:/ s/\(preview:.*:\)[^"]*"/\1pr${{ env.PR_NUMBER }}"/' apercu.yaml
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
