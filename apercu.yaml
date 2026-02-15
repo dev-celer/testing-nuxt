@@ -11,7 +11,7 @@ services:
   backend:
     image:
       baseline: "ghcr.io/dev-celer/testing-nuxt-backend:latest"
-      preview: "ghcr.io/dev-celer/testing-nuxt-frontend:latest"
+      preview: "ghcr.io/dev-celer/testing-nuxt-backend:latest"
     routes:
       - path: /api
     ports:
