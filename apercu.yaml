@@ -3,7 +3,7 @@ services:
   frontend:
     image:
       baseline: "ghcr.io/dev-celer/testing-nuxt-frontend:latest"
-      preview: "ghcr.io/dev-celer/testing-nuxt-frontend:latest"
+      preview: "ghcr.io/dev-celer/testing-nuxt-frontend:{{ env.pr_number }}"
     routes:
       - path: /
     ports:
@@ -11,7 +11,7 @@ services:
   backend:
     image:
       baseline: "ghcr.io/dev-celer/testing-nuxt-backend:latest"
-      preview: "ghcr.io/dev-celer/testing-nuxt-backend:latest"
+      preview: "ghcr.io/dev-celer/testing-nuxt-backend:{{ env.pr_number }}"
     routes:
       - path: /api
     ports:
