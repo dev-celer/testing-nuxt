@@ -98,4 +98,4 @@ jobs:
           context: .
           file: docker/frontend/Dockerfile
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-backend:${{ case(github.event_name == 'pull_request',env.PR_NUMBER,'latest') }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-frontend:${{ case(github.event_name == 'pull_request',env.PR_NUMBER,'latest') }}
