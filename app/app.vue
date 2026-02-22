@@ -9,10 +9,10 @@ async function increment() {
 
 <template>
   <div class="container">
-    <h1>Server-side Counter</h1>
+    <h1>Server-side Counter with feature 1</h1>
     <p class="count">{{ data?.count }}</p>
     <button @click="increment">Increment</button>
-    <p class="hint">The counter state lives on the server. Refresh the page or open in another tab to verify. This is a test comment</p>
+    <p class="hint">The counter state lives on the server. Refresh the page or open in another tab to verify</p>
   </div>
 </template>
 
