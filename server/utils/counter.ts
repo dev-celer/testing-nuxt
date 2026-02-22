@@ -5,5 +5,5 @@ export function getCounter(): number {
 }
 
 export function incrementCounter(): void {
-  counter++
+  counter+=2
 }
